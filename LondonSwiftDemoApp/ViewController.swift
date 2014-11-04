@@ -25,6 +25,8 @@ class ViewController: UIViewController {
         view.addSubview(rgbWidget)
         view.addSubview(savedColorsGrid)
         view.addSubview(toolbar)
+        
+        rgbWidget.currentColor = UIColor.brownColor()
     }
 
     override func viewDidLayoutSubviews()

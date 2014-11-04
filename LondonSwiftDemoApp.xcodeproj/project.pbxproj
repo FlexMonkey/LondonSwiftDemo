@@ -19,6 +19,7 @@
 		3E4ACBA41A08B96B00944B7C /* SavedColorsGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4ACBA31A08B96B00944B7C /* SavedColorsGrid.swift */; };
 		3E4ACBA61A08C07B00944B7C /* Panel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4ACBA51A08C07B00944B7C /* Panel.swift */; };
 		3E4ACBAA1A08C2B500944B7C /* SliderWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4ACBA91A08C2B500944B7C /* SliderWidget.swift */; };
+		3E4ACBAC1A096B7600944B7C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4ACBAB1A096B7600944B7C /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		3E4ACBA31A08B96B00944B7C /* SavedColorsGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedColorsGrid.swift; sourceTree = "<group>"; };
 		3E4ACBA51A08C07B00944B7C /* Panel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Panel.swift; sourceTree = "<group>"; };
 		3E4ACBA91A08C2B500944B7C /* SliderWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderWidget.swift; sourceTree = "<group>"; };
+		3E4ACBAB1A096B7600944B7C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		3E4ACB791A07FB6800944B7C /* LondonSwiftDemoApp */ = {
 			isa = PBXGroup;
 			children = (
+				3E4ACBAD1A096B9700944B7C /* extensions */,
 				3E4ACB9C1A07FB9300944B7C /* components */,
 				3E4ACB7C1A07FB6800944B7C /* AppDelegate.swift */,
 				3E4ACB7E1A07FB6800944B7C /* ViewController.swift */,
@@ -152,6 +155,14 @@
 				3E4ACBA91A08C2B500944B7C /* SliderWidget.swift */,
 			);
 			name = widgets;
+			sourceTree = "<group>";
+		};
+		3E4ACBAD1A096B9700944B7C /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3E4ACBAB1A096B7600944B7C /* Extensions.swift */,
+			);
+			name = extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E4ACB7F1A07FB6800944B7C /* ViewController.swift in Sources */,
+				3E4ACBAC1A096B7600944B7C /* Extensions.swift in Sources */,
 				3E4ACBA61A08C07B00944B7C /* Panel.swift in Sources */,
 				3E4ACBA01A07FE8600944B7C /* RGBWidget.swift in Sources */,
 				3E4ACB7D1A07FB6800944B7C /* AppDelegate.swift in Sources */,

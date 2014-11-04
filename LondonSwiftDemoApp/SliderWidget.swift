@@ -10,24 +10,51 @@ import UIKit
 
 class SliderWidget: UIControl
 {
-
     let slider = UISlider(frame: CGRectZero)
     let label = UILabel(frame: CGRectZero)
     
+    var title: String = ""
+    {
+        didSet
+        {
+            updateLabel()
+        }
+    }
+    
+    var value: Float = 0
+    {
+        didSet
+        {
+            slider.value = value
+            updateLabel()
+        }
+    }
+    
     override func didMoveToSuperview()
     {
-        label.text = "Xyz"
+        slider.addTarget(self, action: "sliderChangeHandler", forControlEvents: .ValueChanged)
         
         layer.cornerRadius = 5
+        layer.backgroundColor = UIColor.darkGrayColor().colorWithAlphaComponent(0.25).CGColor
         
         addSubview(slider)
         addSubview(label)
     }
     
+    func sliderChangeHandler()
+    {
+        updateLabel()
+    }
+    
+    func updateLabel()
+    {
+        label.text = title + ": " + slider.value.format()
+    }
+    
     override func layoutSubviews()
     {
-        label.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
-        slider.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+        label.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height / 2).rectByInsetting(dx: 5, dy: 5)
+        slider.frame = CGRect(x: 0, y: frame.height / 2, width: frame.width, height: frame.height / 2).rectByInsetting(dx: 5, dy: 5)
     }
-
 }
+

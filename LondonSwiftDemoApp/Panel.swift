@@ -15,11 +15,15 @@ class Panel: UIControl
     {
         super.init(frame: frame)
         
-        layer.backgroundColor = UIColor.darkGrayColor().CGColor
+        layer.backgroundColor = UIColor.lightGrayColor().CGColor
         
         layer.shadowColor = UIColor.blackColor().CGColor
         layer.shadowOffset = CGSize(width: 0, height: 0)
         layer.shadowOpacity = 0.75
+        
+        layer.cornerRadius = 5
+        layer.borderColor = UIColor.darkGrayColor().CGColor
+        layer.borderWidth = 1
         
         layer.cornerRadius = 5
     }
