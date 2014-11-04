@@ -13,6 +13,10 @@
 		3E4ACB841A07FB6800944B7C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E4ACB831A07FB6800944B7C /* Images.xcassets */; };
 		3E4ACB871A07FB6800944B7C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E4ACB851A07FB6800944B7C /* LaunchScreen.xib */; };
 		3E4ACB931A07FB6800944B7C /* LondonSwiftDemoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4ACB921A07FB6800944B7C /* LondonSwiftDemoAppTests.swift */; };
+		3E4ACB9E1A07FBCA00944B7C /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4ACB9D1A07FBCA00944B7C /* ColorPicker.swift */; };
+		3E4ACBA01A07FE8600944B7C /* RGBWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4ACB9F1A07FE8600944B7C /* RGBWidget.swift */; };
+		3E4ACBA21A0804E800944B7C /* ColorSwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4ACBA11A0804E800944B7C /* ColorSwatch.swift */; };
+		3E4ACBA41A08B96B00944B7C /* SavedColorsGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4ACBA31A08B96B00944B7C /* SavedColorsGrid.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,10 @@
 		3E4ACB8C1A07FB6800944B7C /* LondonSwiftDemoAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LondonSwiftDemoAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E4ACB911A07FB6800944B7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E4ACB921A07FB6800944B7C /* LondonSwiftDemoAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LondonSwiftDemoAppTests.swift; sourceTree = "<group>"; };
+		3E4ACB9D1A07FBCA00944B7C /* ColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
+		3E4ACB9F1A07FE8600944B7C /* RGBWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RGBWidget.swift; sourceTree = "<group>"; };
+		3E4ACBA11A0804E800944B7C /* ColorSwatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSwatch.swift; sourceTree = "<group>"; };
+		3E4ACBA31A08B96B00944B7C /* SavedColorsGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedColorsGrid.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +85,7 @@
 		3E4ACB791A07FB6800944B7C /* LondonSwiftDemoApp */ = {
 			isa = PBXGroup;
 			children = (
+				3E4ACB9C1A07FB9300944B7C /* components */,
 				3E4ACB7C1A07FB6800944B7C /* AppDelegate.swift */,
 				3E4ACB7E1A07FB6800944B7C /* ViewController.swift */,
 				3E4ACB801A07FB6800944B7C /* Main.storyboard */,
@@ -110,6 +119,17 @@
 				3E4ACB911A07FB6800944B7C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3E4ACB9C1A07FB9300944B7C /* components */ = {
+			isa = PBXGroup;
+			children = (
+				3E4ACB9D1A07FBCA00944B7C /* ColorPicker.swift */,
+				3E4ACB9F1A07FE8600944B7C /* RGBWidget.swift */,
+				3E4ACBA11A0804E800944B7C /* ColorSwatch.swift */,
+				3E4ACBA31A08B96B00944B7C /* SavedColorsGrid.swift */,
+			);
+			name = components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,7 +233,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E4ACB7F1A07FB6800944B7C /* ViewController.swift in Sources */,
+				3E4ACBA01A07FE8600944B7C /* RGBWidget.swift in Sources */,
 				3E4ACB7D1A07FB6800944B7C /* AppDelegate.swift in Sources */,
+				3E4ACB9E1A07FBCA00944B7C /* ColorPicker.swift in Sources */,
+				3E4ACBA21A0804E800944B7C /* ColorSwatch.swift in Sources */,
+				3E4ACBA41A08B96B00944B7C /* SavedColorsGrid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +431,7 @@
 				3E4ACB981A07FB6800944B7C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3E4ACB991A07FB6800944B7C /* Build configuration list for PBXNativeTarget "LondonSwiftDemoAppTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +440,7 @@
 				3E4ACB9B1A07FB6800944B7C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
