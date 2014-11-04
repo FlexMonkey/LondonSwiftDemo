@@ -8,16 +8,11 @@
 
 import UIKit
 
-class SavedColorsGrid: UIControl {
+class SavedColorsGrid: Panel
+{
     
     override func didMoveToSuperview()
     {
-        layer.backgroundColor = UIColor.lightGrayColor().CGColor
-        
-        let label = UILabel()
-        label.text = "SavedColorsGrid"
-        
-        addSubview(label)
     }
     
     override func layoutSubviews()

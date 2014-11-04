@@ -8,16 +8,11 @@
 
 import UIKit
 
-class ColorSwatch: UIControl {
+class ColorSwatch: Panel
+{
     
     override func didMoveToSuperview()
     {
-        layer.backgroundColor = UIColor.greenColor().CGColor
-        
-        let label = UILabel()
-        label.text = "ColorPicker"
-        
-        addSubview(label)
     }
     
     override func layoutSubviews()
