@@ -17,7 +17,7 @@ class SavedColorsGrid: Panel
     
     override func layoutSubviews()
     {
-        println("SavedColorsGrid: layoutSubviews")
+
     }
     
 }

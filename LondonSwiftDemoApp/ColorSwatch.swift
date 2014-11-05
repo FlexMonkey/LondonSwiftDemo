@@ -11,13 +11,21 @@ import UIKit
 class ColorSwatch: Panel
 {
     
+    var currentColor:UIColor = UIColor.blackColor()
+    {
+        didSet
+        {
+            layer.backgroundColor = currentColor.CGColor
+        }
+    }
+    
     override func didMoveToSuperview()
     {
     }
     
     override func layoutSubviews()
     {
-        println("ColorSwatch: layoutSubviews")
+
     }
     
 }

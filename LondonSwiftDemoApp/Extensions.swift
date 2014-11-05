@@ -37,3 +37,8 @@ extension UIColor
     }
     
 }
+
+func == (lhs: UIColor, rhs: UIColor) -> Bool
+{
+    return CGColorEqualToColor(lhs.CGColor, rhs.CGColor)
+}

@@ -97,8 +97,6 @@ class RGBWidget: Panel
             greenComponent = currentColor.getRGB().greenComponent
             blueComponent = currentColor.getRGB().blueComponent
             
-            println("color \(currentColor)")
-            
             sendActionsForControlEvents(UIControlEvents.ValueChanged)
         }
     }

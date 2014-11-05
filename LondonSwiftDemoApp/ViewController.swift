@@ -16,6 +16,26 @@ class ViewController: UIViewController {
     let rgbWidget = RGBWidget(frame: CGRectZero)
     let savedColorsGrid = SavedColorsGrid(frame: CGRectZero)
     
+    var uiControlEventsEnabled = true;
+    
+    var currentColor: UIColor = UIColor.brownColor()
+    {
+        didSet
+        {
+            if !(rgbWidget.currentColor == currentColor)
+            {
+                rgbWidget.currentColor = currentColor
+            }
+            
+            if !(colorPicker.currentColor == currentColor)
+            {
+                colorPicker.currentColor = currentColor
+            }
+            
+            colorSwatch.currentColor = currentColor
+        }
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -26,9 +46,22 @@ class ViewController: UIViewController {
         view.addSubview(savedColorsGrid)
         view.addSubview(toolbar)
         
-        rgbWidget.currentColor = UIColor.brownColor()
+        currentColor = UIColor.brownColor()
+        
+        rgbWidget.addTarget(self, action: "rgbWidgetChangeHandler", forControlEvents: UIControlEvents.ValueChanged)
+        colorPicker.addTarget(self, action: "colorPickerChangeHandler", forControlEvents: UIControlEvents.ValueChanged)
     }
 
+    func colorPickerChangeHandler()
+    {
+        currentColor = colorPicker.currentColor
+    }
+    
+    func rgbWidgetChangeHandler()
+    {
+        currentColor = rgbWidget.currentColor
+    }
+    
     override func viewDidLayoutSubviews()
     {
         let toolbarHeight: CGFloat = 50
@@ -48,8 +81,8 @@ class ViewController: UIViewController {
             let upperRowTop = topLayoutGuide.length
             let bottomRowTop = upperRowHeight + upperRowTop
             
-            colorSwatch.frame = CGRect(x: 0, y: upperRowTop, width: leftColumnWidth, height: upperRowHeight).rectByInsetting(dx: margin, dy: margin)
-            savedColorsGrid.frame = CGRect(x: leftColumnWidth, y: upperRowTop, width: rightColumnWidth, height: upperRowHeight).rectByInsetting(dx: margin, dy: margin)
+            savedColorsGrid.frame = CGRect(x: 0, y: upperRowTop, width: leftColumnWidth, height: upperRowHeight).rectByInsetting(dx: margin, dy: margin)
+            colorSwatch.frame = CGRect(x: leftColumnWidth, y: upperRowTop, width: rightColumnWidth, height: upperRowHeight).rectByInsetting(dx: margin, dy: margin)
             
             colorPicker.frame = CGRect(x: 0, y: bottomRowTop, width: leftColumnWidth, height: bottomRowHeight).rectByInsetting(dx: margin, dy: margin)
             rgbWidget.frame = CGRect(x: leftColumnWidth, y: bottomRowTop, width: rightColumnWidth, height: bottomRowHeight).rectByInsetting(dx: margin, dy: margin)
