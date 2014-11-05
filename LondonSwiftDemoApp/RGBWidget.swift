@@ -10,27 +10,60 @@ import UIKit
 
 class RGBWidget: Panel
 {
- 
-    let redWidget = SliderWidget(frame: CGRectZero)
-    let greenWidget = SliderWidget(frame: CGRectZero)
-    let blueWidget = SliderWidget(frame: CGRectZero)
+    var enableObserversOnColorComponents = true
+    
+    let redWidget: SliderWidget!
+    let greenWidget: SliderWidget!
+    let blueWidget: SliderWidget!
+    
+    let widgets: [SliderWidget]!
+    let widgetTitles = ["Red", "Green", "Blue"]
+    
+    override required init(frame: CGRect)
+    {
+        super.init(frame: frame)
+        
+        redWidget = SliderWidget(frame: CGRectZero)
+        greenWidget = SliderWidget(frame: CGRectZero)
+        blueWidget = SliderWidget(frame: CGRectZero)
+        
+        widgets = [redWidget, greenWidget, blueWidget]
+    }
+
+    required init(coder aDecoder: NSCoder)
+    {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func didMoveToSuperview()
     {
-        addSubview(redWidget)
-        addSubview(greenWidget)
-        addSubview(blueWidget)
+        for (i: Int, widget: SliderWidget) in enumerate(widgets)
+        {
+            addSubview(widget)
+            
+            widget.title = widgetTitles[i]
+            
+            widget.addTarget(self, action: "sliderChangeHandler", forControlEvents: UIControlEvents.ValueChanged)
+        }
+    }
+    
+    func sliderChangeHandler()
+    {
+        enableObserversOnColorComponents = false
         
-        redWidget.title = "Red"
-        greenWidget.title = "Green"
-        blueWidget.title = "Blue"
+        currentColor = UIColor.colorFromFloats(redComponent: redWidget.value, greenComponent: greenWidget.value, blueComponent: blueWidget.value)
+        
+        enableObserversOnColorComponents = true
     }
     
     private var redComponent: Float = 0
     {
         didSet
         {
-            redWidget.value = redComponent
+            if enableObserversOnColorComponents
+            {
+                redWidget.value = redComponent
+            }
         }
     }
     
@@ -38,7 +71,10 @@ class RGBWidget: Panel
     {
         didSet
         {
-            greenWidget.value = greenComponent
+            if enableObserversOnColorComponents
+            {
+                greenWidget.value = greenComponent
+            }
         }
     }
     
@@ -46,7 +82,10 @@ class RGBWidget: Panel
     {
         didSet
         {
-            blueWidget.value = blueComponent
+            if enableObserversOnColorComponents
+            {
+                blueWidget.value = blueComponent
+            }
         }
     }
     
@@ -54,11 +93,13 @@ class RGBWidget: Panel
     {
         didSet
         {
-            let colorRef = CGColorGetComponents(currentColor.CGColor);
+            redComponent = currentColor.getRGB().redComponent
+            greenComponent = currentColor.getRGB().greenComponent
+            blueComponent = currentColor.getRGB().blueComponent
             
-            redComponent = Float(colorRef[0])
-            greenComponent = Float(colorRef[1])
-            blueComponent = Float(colorRef[2])
+            println("color \(currentColor)")
+            
+            sendActionsForControlEvents(UIControlEvents.ValueChanged)
         }
     }
     
@@ -67,9 +108,11 @@ class RGBWidget: Panel
         let widgetHeight = frame.height / 3
         let margin = CGFloat(6)
         
-        redWidget.frame = CGRect(x: 0, y: 0, width: frame.width, height: widgetHeight).rectByInsetting(dx: margin, dy: margin)
-        greenWidget.frame = CGRect(x: 0, y: widgetHeight, width: frame.width, height: widgetHeight).rectByInsetting(dx: margin, dy: margin)
-        blueWidget.frame = CGRect(x: 0, y: widgetHeight * 2, width: frame.width, height: widgetHeight).rectByInsetting(dx: margin, dy: margin)
+        for (i: Int, widget: SliderWidget) in enumerate(widgets)
+        {
+            widget.frame = CGRect(x: 0, y: CGFloat(i) * widgetHeight, width: frame.width, height: widgetHeight).rectByInsetting(dx: margin, dy: margin)
+        }
+        
     }
     
 }

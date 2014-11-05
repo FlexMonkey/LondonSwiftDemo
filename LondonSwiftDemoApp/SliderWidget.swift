@@ -43,12 +43,14 @@ class SliderWidget: UIControl
     
     func sliderChangeHandler()
     {
-        updateLabel()
+        value = slider.value
+        
+        sendActionsForControlEvents(.ValueChanged)
     }
     
     func updateLabel()
     {
-        label.text = title + ": " + slider.value.format()
+        label.text = title + ": " + value.format()
     }
     
     override func layoutSubviews()
