@@ -17,7 +17,7 @@ class ColorSpinnerItemRenderer: UIControl
     
     init(frame : CGRect, color : NamedColor)
     {
-        super.init(frame: CGRect(x: 0, y: 0, width: 200, height: 80))
+        super.init(frame: frame)
         
         label.text = color.name
         border.backgroundColor = UIColor.whiteColor()
@@ -37,11 +37,13 @@ class ColorSpinnerItemRenderer: UIControl
         super.init(coder: coder)
     }
     
-    override func didMoveToWindow()
+    override func layoutSubviews()
     {
-        label.frame = CGRect(x: 20, y: 0, width: 200, height: 80)
-        border.frame = CGRect(x: 158, y: 80 / 2 - 7, width: 34, height: 14)
-        swatch.frame = CGRect(x: 160, y: 80 / 2 - 5, width: 30, height: 10)
+        label.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+        
+        border.frame = CGRect(x: frame.width - frame.height - 25, y: 0, width: frame.height, height: frame.height).rectByInsetting(dx: 4, dy: 4)
+        swatch.frame = CGRect(x: frame.width - frame.height - 25, y: 0, width: frame.height, height: frame.height).rectByInsetting(dx: 6, dy: 6)
     }
+    
     
 }

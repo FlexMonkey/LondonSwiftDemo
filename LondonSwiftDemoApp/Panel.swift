@@ -19,7 +19,7 @@ class Panel: UIControl
         
         layer.shadowColor = UIColor.blackColor().CGColor
         layer.shadowOffset = CGSize(width: 0, height: 0)
-        layer.shadowOpacity = 0.75
+        layer.shadowOpacity = 0.5
         
         layer.cornerRadius = 5
         layer.borderColor = UIColor.darkGrayColor().CGColor

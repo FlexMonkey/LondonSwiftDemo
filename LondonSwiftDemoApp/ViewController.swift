@@ -46,6 +46,8 @@ class ViewController: UIViewController {
         view.addSubview(savedColorsGrid)
         view.addSubview(toolbar)
         
+        view.backgroundColor = UIColor.lightGrayColor()
+        
         currentColor = UIColor.brownColor()
         
         rgbWidget.addTarget(self, action: "rgbWidgetChangeHandler", forControlEvents: UIControlEvents.ValueChanged)

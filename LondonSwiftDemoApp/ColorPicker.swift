@@ -29,6 +29,8 @@ class ColorPicker: Panel, UIPickerViewDataSource, UIPickerViewDelegate
         NamedColor(name: "Sienna", color: UIColor(red: 160/255, green: 82/255, blue: 45/255, alpha: 1))
     ]
     
+    let rowHeight = CGFloat(30)
+    
     let spinner : UIPickerView = UIPickerView(frame: CGRectZero)
     
     override init(frame: CGRect)
@@ -71,6 +73,11 @@ class ColorPicker: Panel, UIPickerViewDataSource, UIPickerViewDelegate
         super.init(coder: coder)
     }
     
+    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat
+    {
+        return rowHeight
+    }
+    
     func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String
     {
         return colors[row].name
@@ -100,7 +107,7 @@ class ColorPicker: Panel, UIPickerViewDataSource, UIPickerViewDelegate
     {
         let rendererColor = (row == 0) ? NamedColor(name: "Custom", color: currentColor) : colors[row]
         
-        return ColorSpinnerItemRenderer(frame: CGRectZero, color : rendererColor)
+        return ColorSpinnerItemRenderer(frame: CGRect(x: 0, y: 0, width: frame.width, height: rowHeight), color : rendererColor)
     }
     
     override func layoutSubviews()
