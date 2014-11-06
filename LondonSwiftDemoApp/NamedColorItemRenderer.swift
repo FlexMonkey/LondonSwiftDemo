@@ -1,6 +1,5 @@
 //
-//  ColorSpinnerItemRenderer.swift
-//  NumericDial
+//  NamedColorItemRenderer.swift
 //
 //  Created by Simon Gladman on 09/09/2014.
 //  Copyright (c) 2014 Simon Gladman. All rights reserved.
@@ -8,33 +7,40 @@
 
 import UIKit
 
-class ColorSpinnerItemRenderer: UIControl
+class NamedColorItemRenderer: UICollectionViewCell
 {
     let label = UILabel(frame: CGRectZero)
     
     let border = UIView(frame: CGRectZero)
     let swatch = UIView(frame: CGRectZero)
     
-    init(frame : CGRect, color : NamedColor)
+    override init(frame : CGRect)
     {
         super.init(frame: frame)
         
-        label.text = color.name
         border.backgroundColor = UIColor.whiteColor()
-        swatch.backgroundColor = color.color
         
         addSubview(label)
         
-        if (color.color != UIColor.clearColor())
-        {
-            addSubview(border)
-            addSubview(swatch)
-        }
+        addSubview(border)
+        addSubview(swatch)
+    }
+
+    required init(coder aDecoder: NSCoder)
+    {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    required init(coder: NSCoder)
+    var namedColor: NamedColor?
     {
-        super.init(coder: coder)
+        didSet
+        {
+            if let _namedColor = namedColor
+            {
+                label.text = _namedColor.name
+                swatch.backgroundColor = _namedColor.color
+            }
+        }
     }
     
     override func layoutSubviews()

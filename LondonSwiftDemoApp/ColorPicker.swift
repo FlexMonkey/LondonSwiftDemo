@@ -107,7 +107,10 @@ class ColorPicker: Panel, UIPickerViewDataSource, UIPickerViewDelegate
     {
         let rendererColor = (row == 0) ? NamedColor(name: "Custom", color: currentColor) : colors[row]
         
-        return ColorSpinnerItemRenderer(frame: CGRect(x: 0, y: 0, width: frame.width, height: rowHeight), color : rendererColor)
+        let namedColorRenderer = NamedColorItemRenderer(frame: CGRect(x: 0, y: 0, width: frame.width, height: rowHeight))
+        namedColorRenderer.namedColor = rendererColor
+        
+        return namedColorRenderer
     }
     
     override func layoutSubviews()

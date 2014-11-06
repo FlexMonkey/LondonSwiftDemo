@@ -20,7 +20,7 @@
 		3E4ACBA61A08C07B00944B7C /* Panel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4ACBA51A08C07B00944B7C /* Panel.swift */; };
 		3E4ACBAA1A08C2B500944B7C /* SliderWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4ACBA91A08C2B500944B7C /* SliderWidget.swift */; };
 		3E4ACBAC1A096B7600944B7C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4ACBAB1A096B7600944B7C /* Extensions.swift */; };
-		3E4ACBB01A0A9FA800944B7C /* ColorSpinnerItemRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4ACBAF1A0A9FA800944B7C /* ColorSpinnerItemRenderer.swift */; };
+		3E4ACBB01A0A9FA800944B7C /* NamedColorItemRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4ACBAF1A0A9FA800944B7C /* NamedColorItemRenderer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +51,7 @@
 		3E4ACBA51A08C07B00944B7C /* Panel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Panel.swift; sourceTree = "<group>"; };
 		3E4ACBA91A08C2B500944B7C /* SliderWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderWidget.swift; sourceTree = "<group>"; };
 		3E4ACBAB1A096B7600944B7C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		3E4ACBAF1A0A9FA800944B7C /* ColorSpinnerItemRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSpinnerItemRenderer.swift; sourceTree = "<group>"; };
+		3E4ACBAF1A0A9FA800944B7C /* NamedColorItemRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedColorItemRenderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,7 +171,7 @@
 		3E4ACBAE1A0A9F8800944B7C /* itemRenderers */ = {
 			isa = PBXGroup;
 			children = (
-				3E4ACBAF1A0A9FA800944B7C /* ColorSpinnerItemRenderer.swift */,
+				3E4ACBAF1A0A9FA800944B7C /* NamedColorItemRenderer.swift */,
 			);
 			name = itemRenderers;
 			sourceTree = "<group>";
@@ -279,7 +279,7 @@
 				3E4ACB7F1A07FB6800944B7C /* ViewController.swift in Sources */,
 				3E4ACBAC1A096B7600944B7C /* Extensions.swift in Sources */,
 				3E4ACBA61A08C07B00944B7C /* Panel.swift in Sources */,
-				3E4ACBB01A0A9FA800944B7C /* ColorSpinnerItemRenderer.swift in Sources */,
+				3E4ACBB01A0A9FA800944B7C /* NamedColorItemRenderer.swift in Sources */,
 				3E4ACBA01A07FE8600944B7C /* RGBWidget.swift in Sources */,
 				3E4ACB7D1A07FB6800944B7C /* AppDelegate.swift in Sources */,
 				3E4ACBAA1A08C2B500944B7C /* SliderWidget.swift in Sources */,
