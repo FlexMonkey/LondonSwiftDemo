@@ -10,7 +10,6 @@ import UIKit
 
 class ColorSwatch: Panel
 {
-    
     var currentColor:UIColor = UIColor.blackColor()
     {
         didSet

@@ -31,6 +31,22 @@ class NamedColorItemRenderer: UICollectionViewCell
         fatalError("init(coder:) has not been implemented")
     }
     
+    var hasBackground: Bool = false
+    {
+        didSet
+        {
+            if hasBackground
+            {
+                layer.cornerRadius = 5
+                layer.backgroundColor = UIColor.darkGrayColor().colorWithAlphaComponent(0.25).CGColor
+            }
+            else
+            {
+                layer.backgroundColor = UIColor.clearColor().CGColor
+            }
+        }
+    }
+    
     var namedColor: NamedColor?
     {
         didSet
@@ -45,7 +61,10 @@ class NamedColorItemRenderer: UICollectionViewCell
     
     override func layoutSubviews()
     {
-        label.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+        label.frame = CGRect(x: 10, y: 0, width: frame.width, height: frame.height)
+        
+        border.layer.cornerRadius = 3
+        swatch.layer.cornerRadius = 3
         
         border.frame = CGRect(x: frame.width - frame.height - 25, y: 0, width: frame.height, height: frame.height).rectByInsetting(dx: 4, dy: 4)
         swatch.frame = CGRect(x: frame.width - frame.height - 25, y: 0, width: frame.height, height: frame.height).rectByInsetting(dx: 6, dy: 6)

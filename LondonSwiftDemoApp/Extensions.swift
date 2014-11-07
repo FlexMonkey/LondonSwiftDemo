@@ -36,6 +36,37 @@ extension UIColor
         return (redComponent: redComponent, greenComponent: greenComponent, blueComponent: blueComponent)
     }
     
+    func getHex() -> String
+    {
+        var returnString = ""
+        
+        let rgb = self.getRGB()
+        
+        let red = NSString(format: "%02X", Int(rgb.redComponent * 255))
+        let green = NSString(format: "%02X", Int(rgb.greenComponent * 255))
+        let blue = NSString(format: "%02X", Int(rgb.blueComponent * 255))
+        
+        return red + green + blue
+    }
+    
+    func makeDarker() -> UIColor
+    {
+        let red = getRGB().redComponent * 0.9
+        let green = getRGB().greenComponent * 0.9
+        let blue = getRGB().blueComponent * 0.9
+        
+        return UIColor.colorFromFloats(redComponent: red, greenComponent: green, blueComponent: blue)
+    }
+    
+    func makeLighter() -> UIColor
+    {
+        let red = min(getRGB().redComponent * 1.1, 1.0)
+        let green = min(getRGB().greenComponent * 1.1, 1.0)
+        let blue = min(getRGB().blueComponent * 1.1, 1.0)
+        
+        return UIColor.colorFromFloats(redComponent: red, greenComponent: green, blueComponent: blue)
+    }
+    
 }
 
 func == (lhs: UIColor, rhs: UIColor) -> Bool

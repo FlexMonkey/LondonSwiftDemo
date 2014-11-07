@@ -16,7 +16,30 @@ class ViewController: UIViewController {
     let rgbWidget = RGBWidget(frame: CGRectZero)
     let savedColorsGrid = SavedColorsGrid(frame: CGRectZero)
     
-    var uiControlEventsEnabled = true;
+    let alertController: UIAlertController!
+    let makeDarkerAlertAction: UIAlertAction!
+    let makeDarkerLighterAction: UIAlertAction!
+    
+    required init(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)
+        
+        alertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        makeDarkerAlertAction = UIAlertAction(title: "Make darker", style: UIAlertActionStyle.Default, handler: adjustColor)
+        makeDarkerLighterAction = UIAlertAction(title: "Make lighter", style: UIAlertActionStyle.Default, handler: adjustColor)
+        
+        alertController.addAction(makeDarkerLighterAction)
+        alertController.addAction(makeDarkerAlertAction)
+    }
+    
+    var savedColors: [NamedColor] = [NamedColor]()
+    {
+        didSet
+        {
+            savedColorsGrid.colors = savedColors
+        }
+    }
     
     var currentColor: UIColor = UIColor.brownColor()
     {
@@ -52,6 +75,9 @@ class ViewController: UIViewController {
         
         rgbWidget.addTarget(self, action: "rgbWidgetChangeHandler", forControlEvents: UIControlEvents.ValueChanged)
         colorPicker.addTarget(self, action: "colorPickerChangeHandler", forControlEvents: UIControlEvents.ValueChanged)
+        savedColorsGrid.addTarget(self, action: "savedColorsGridSelectHandler", forControlEvents: UIControlEvents.ValueChanged)
+ 
+        populateToolbar()
     }
 
     func colorPickerChangeHandler()
@@ -62,6 +88,65 @@ class ViewController: UIViewController {
     func rgbWidgetChangeHandler()
     {
         currentColor = rgbWidget.currentColor
+    }
+    
+    func savedColorsGridSelectHandler()
+    {
+        currentColor = savedColorsGrid.getSelectedColor()
+    }
+    
+    func populateToolbar()
+    {
+        let saveBarButtonItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.Plain, target: self, action: "saveCurrentColor")
+        let tweakBarButtonItem = UIBarButtonItem(title: "Tweak", style: UIBarButtonItemStyle.Plain, target: self, action: "showTweakMenu:")
+        let aboutBarButtonItem = UIBarButtonItem(title: "About", style: UIBarButtonItemStyle.Plain, target: self, action: "showAbout")
+        
+        let spacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        
+        toolbar.setItems([saveBarButtonItem, spacer, tweakBarButtonItem, spacer, aboutBarButtonItem], animated: true)
+    }
+    
+    func saveCurrentColor()
+    {
+        let savedColor = NamedColor(name: currentColor.getHex(), color: currentColor)
+        
+        savedColors.append(savedColor)
+    }
+    
+    func showTweakMenu(value: UIBarButtonItem)
+    {
+        alertController.popoverPresentationController?.barButtonItem = value
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func adjustColor(value: UIAlertAction!)
+    {
+        if value == makeDarkerAlertAction
+        {
+            currentColor = currentColor.makeDarker()
+        }
+        else if value == makeDarkerLighterAction
+        {
+            currentColor = currentColor.makeLighter()
+        }
+    }
+    
+    func showAbout()
+    {
+        var alertController = UIAlertController(title: "London Swift Demo Application", message: "Simon Gladman | November 2014", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        let openBlogAction = UIAlertAction(title: "Open Blog", style: .Default, handler: nil)
+        
+        alertController.addAction(okAction)
+        alertController.addAction(openBlogAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func visitFlexMonkey()
+    {
+       UIApplication.sharedApplication().openURL(NSURL(string: "http://flexmonkey.blogspot.co.uk")!)
     }
     
     override func viewDidLayoutSubviews()
