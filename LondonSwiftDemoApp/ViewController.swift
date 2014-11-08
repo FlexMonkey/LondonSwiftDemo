@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
 
@@ -20,8 +21,14 @@ class ViewController: UIViewController {
     let makeDarkerAlertAction: UIAlertAction!
     let makeDarkerLighterAction: UIAlertAction!
     
+    let appDelegate: AppDelegate
+    let managedObjectContext: NSManagedObjectContext
+    
     required init(coder aDecoder: NSCoder)
     {
+        appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        managedObjectContext = appDelegate.managedObjectContext!
+        
         super.init(coder: aDecoder)
         
         alertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
@@ -78,6 +85,8 @@ class ViewController: UIViewController {
         savedColorsGrid.addTarget(self, action: "savedColorsGridSelectHandler", forControlEvents: UIControlEvents.ValueChanged)
  
         populateToolbar()
+        
+        loadSavedColors()
     }
 
     func colorPickerChangeHandler()
@@ -106,11 +115,32 @@ class ViewController: UIViewController {
         toolbar.setItems([saveBarButtonItem, spacer, tweakBarButtonItem, spacer, aboutBarButtonItem], animated: true)
     }
     
+    func loadSavedColors()
+    {
+        let fetchRequest = NSFetchRequest(entityName: "NamedColorEntity")
+        
+        if let fetchResults = managedObjectContext.executeFetchRequest(fetchRequest, error: nil) as? [NamedColorEntity]
+        {
+            var loadedColors = [NamedColor]()
+            
+            for namedColorEntity in fetchResults
+            {
+                loadedColors.append(NamedColorEntity.createInstanceFromEntity(namedColorEntity))
+            }
+            
+            savedColors = loadedColors
+        }
+    }
+    
     func saveCurrentColor()
     {
         let savedColor = NamedColor(name: currentColor.getHex(), color: currentColor)
         
         savedColors.insert(savedColor, atIndex: 0)
+        
+        var newEntity = NamedColorEntity.createInManagedObjectContext(managedObjectContext, namedColor: savedColor)
+        
+        appDelegate.saveContext()
     }
     
     func showTweakMenu(value: UIBarButtonItem)

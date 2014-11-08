@@ -25,6 +25,11 @@ extension UIColor
         return UIColor(red: CGFloat(redComponent), green: CGFloat(greenComponent), blue: CGFloat(blueComponent), alpha: 1.0)
     }
     
+    class func colorFromNSNumbers(#redComponent: NSNumber, greenComponent: NSNumber, blueComponent: NSNumber) -> UIColor
+    {
+        return UIColor(red: CGFloat(redComponent), green: CGFloat(greenComponent), blue: CGFloat(blueComponent), alpha: 1.0)
+    }
+    
     func getRGB() -> (redComponent: Float, greenComponent: Float, blueComponent: Float)
     {
         let colorRef = CGColorGetComponents(self.CGColor);

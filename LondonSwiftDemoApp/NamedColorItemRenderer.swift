@@ -26,7 +26,7 @@ class NamedColorItemRenderer: UICollectionViewCell, UITextFieldDelegate
         textInput.clearButtonMode = UITextFieldViewMode.Always
         textInput.keyboardAppearance = UIKeyboardAppearance.Dark
         textInput.delegate = self
-        
+    
         addSubview(label)
         addSubview(border)
         addSubview(swatch)
@@ -81,6 +81,13 @@ class NamedColorItemRenderer: UICollectionViewCell, UITextFieldDelegate
                 swatch.backgroundColor = _namedColor.color
             }
         }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool
+    {
+        textField.endEditing(true)
+        
+        return true
     }
     
     func textFieldDidEndEditing(textField: UITextField)
