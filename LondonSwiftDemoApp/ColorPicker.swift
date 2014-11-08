@@ -108,6 +108,8 @@ class ColorPicker: Panel, UIPickerViewDataSource, UIPickerViewDelegate
         let rendererColor = (row == 0) ? NamedColor(name: "Custom", color: currentColor) : colors[row]
         
         let namedColorRenderer = NamedColorItemRenderer(frame: CGRect(x: 0, y: 0, width: frame.width, height: rowHeight))
+        
+        namedColorRenderer.editable = false
         namedColorRenderer.namedColor = rendererColor
         
         return namedColorRenderer
@@ -119,14 +121,4 @@ class ColorPicker: Panel, UIPickerViewDataSource, UIPickerViewDelegate
     }
 }
 
-struct NamedColor
-{
-    var name : String
-    var color : UIColor
-    
-    init(name : String, color : UIColor)
-    {
-        self.name = name;
-        self.color = color
-    }
-}
+

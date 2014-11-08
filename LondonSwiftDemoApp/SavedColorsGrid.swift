@@ -41,15 +41,30 @@ class SavedColorsGrid: Panel, UICollectionViewDataSource, UICollectionViewDelega
     {
         didSet
         {
-            uiCollectionView.reloadData()
+            if oldValue.count < colors.count && oldValue.count != 0
+            {
+                for newColor in colors
+                {
+                    if oldValue.filter({($0 == newColor)}).count == 0
+                    {
+                        let insertIndexPath = NSIndexPath(forItem: 0, inSection: 0) // colors.count - 1
+                        
+                        uiCollectionView.insertItemsAtIndexPaths([insertIndexPath])
+                    }
+                }
+            }
+            else
+            {
+                uiCollectionView.reloadData()
+            }
         }
     }
-    
+
     func getSelectedColor() -> UIColor
     {
         return selectedColor!
     }
-    
+
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         return colors.count
@@ -67,6 +82,7 @@ class SavedColorsGrid: Panel, UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as NamedColorItemRenderer
         
         cell.hasBackground = true
+        cell.editable = true
         cell.namedColor = colors[indexPath.item]
         
         return cell

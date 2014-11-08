@@ -110,7 +110,7 @@ class ViewController: UIViewController {
     {
         let savedColor = NamedColor(name: currentColor.getHex(), color: currentColor)
         
-        savedColors.append(savedColor)
+        savedColors.insert(savedColor, atIndex: 0)
     }
     
     func showTweakMenu(value: UIBarButtonItem)
@@ -136,7 +136,7 @@ class ViewController: UIViewController {
         var alertController = UIAlertController(title: "London Swift Demo Application", message: "Simon Gladman | November 2014", preferredStyle: UIAlertControllerStyle.Alert)
         
         let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-        let openBlogAction = UIAlertAction(title: "Open Blog", style: .Default, handler: nil)
+        let openBlogAction = UIAlertAction(title: "Open Blog", style: .Default, handler: visitFlexMonkey)
         
         alertController.addAction(okAction)
         alertController.addAction(openBlogAction)
@@ -144,7 +144,7 @@ class ViewController: UIViewController {
         presentViewController(alertController, animated: true, completion: nil)
     }
     
-    func visitFlexMonkey()
+    func visitFlexMonkey(value: UIAlertAction!)
     {
        UIApplication.sharedApplication().openURL(NSURL(string: "http://flexmonkey.blogspot.co.uk")!)
     }

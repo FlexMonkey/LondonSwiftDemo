@@ -7,9 +7,11 @@
 
 import UIKit
 
-class NamedColorItemRenderer: UICollectionViewCell
+class NamedColorItemRenderer: UICollectionViewCell, UITextFieldDelegate
 {
     let label = UILabel(frame: CGRectZero)
+    
+    let textInput = UITextField(frame: CGRectZero)
     
     let border = UIView(frame: CGRectZero)
     let swatch = UIView(frame: CGRectZero)
@@ -20,8 +22,12 @@ class NamedColorItemRenderer: UICollectionViewCell
         
         border.backgroundColor = UIColor.whiteColor()
         
-        addSubview(label)
+        textInput.borderStyle = UITextBorderStyle.RoundedRect
+        textInput.clearButtonMode = UITextFieldViewMode.Always
+        textInput.keyboardAppearance = UIKeyboardAppearance.Dark
+        textInput.delegate = self
         
+        addSubview(label)
         addSubview(border)
         addSubview(swatch)
     }
@@ -29,6 +35,23 @@ class NamedColorItemRenderer: UICollectionViewCell
     required init(coder aDecoder: NSCoder)
     {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    var editable: Bool = false
+    {
+        didSet
+        {
+            if editable
+            {
+                label.removeFromSuperview()
+                addSubview(textInput)
+            }
+            else
+            {
+                textInput.removeFromSuperview()
+                addSubview(label)
+            }
+        }
     }
     
     var hasBackground: Bool = false
@@ -54,14 +77,25 @@ class NamedColorItemRenderer: UICollectionViewCell
             if let _namedColor = namedColor
             {
                 label.text = _namedColor.name
+                textInput.text = _namedColor.name
                 swatch.backgroundColor = _namedColor.color
             }
+        }
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField)
+    {
+        if namedColor != nil
+        {
+            namedColor!.name = textInput.text
         }
     }
     
     override func layoutSubviews()
     {
         label.frame = CGRect(x: 10, y: 0, width: frame.width, height: frame.height)
+        
+        textInput.frame = CGRect(x: 4, y: 0, width: frame.width * 0.5, height: frame.height).rectByInsetting(dx: 4, dy: 4)
         
         border.layer.cornerRadius = 3
         swatch.layer.cornerRadius = 3

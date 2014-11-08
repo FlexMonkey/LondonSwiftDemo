@@ -21,6 +21,7 @@
 		3E4ACBAA1A08C2B500944B7C /* SliderWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4ACBA91A08C2B500944B7C /* SliderWidget.swift */; };
 		3E4ACBAC1A096B7600944B7C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4ACBAB1A096B7600944B7C /* Extensions.swift */; };
 		3E4ACBB01A0A9FA800944B7C /* NamedColorItemRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4ACBAF1A0A9FA800944B7C /* NamedColorItemRenderer.swift */; };
+		3E4ACBB31A0D3BA400944B7C /* NamedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4ACBB21A0D3BA400944B7C /* NamedColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		3E4ACBA91A08C2B500944B7C /* SliderWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderWidget.swift; sourceTree = "<group>"; };
 		3E4ACBAB1A096B7600944B7C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3E4ACBAF1A0A9FA800944B7C /* NamedColorItemRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedColorItemRenderer.swift; sourceTree = "<group>"; };
+		3E4ACBB21A0D3BA400944B7C /* NamedColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 		3E4ACB791A07FB6800944B7C /* LondonSwiftDemoApp */ = {
 			isa = PBXGroup;
 			children = (
+				3E4ACBB11A0D3B8B00944B7C /* valueObjects */,
 				3E4ACBAD1A096B9700944B7C /* extensions */,
 				3E4ACB9C1A07FB9300944B7C /* components */,
 				3E4ACB7C1A07FB6800944B7C /* AppDelegate.swift */,
@@ -174,6 +177,14 @@
 				3E4ACBAF1A0A9FA800944B7C /* NamedColorItemRenderer.swift */,
 			);
 			name = itemRenderers;
+			sourceTree = "<group>";
+		};
+		3E4ACBB11A0D3B8B00944B7C /* valueObjects */ = {
+			isa = PBXGroup;
+			children = (
+				3E4ACBB21A0D3BA400944B7C /* NamedColor.swift */,
+			);
+			name = valueObjects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,6 +295,7 @@
 				3E4ACB7D1A07FB6800944B7C /* AppDelegate.swift in Sources */,
 				3E4ACBAA1A08C2B500944B7C /* SliderWidget.swift in Sources */,
 				3E4ACB9E1A07FBCA00944B7C /* ColorPicker.swift in Sources */,
+				3E4ACBB31A0D3BA400944B7C /* NamedColor.swift in Sources */,
 				3E4ACBA21A0804E800944B7C /* ColorSwatch.swift in Sources */,
 				3E4ACBA41A08B96B00944B7C /* SavedColorsGrid.swift in Sources */,
 			);
