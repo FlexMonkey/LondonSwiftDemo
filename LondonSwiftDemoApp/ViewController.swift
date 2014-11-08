@@ -138,8 +138,8 @@ class ViewController: UIViewController {
         
         savedColors.insert(savedColor, atIndex: 0)
         
-        var newEntity = NamedColorEntity.createInManagedObjectContext(managedObjectContext, namedColor: savedColor)
-        
+        NamedColorEntity.createInManagedObjectContext(managedObjectContext, namedColor: savedColor)
+  
         appDelegate.saveContext()
     }
     

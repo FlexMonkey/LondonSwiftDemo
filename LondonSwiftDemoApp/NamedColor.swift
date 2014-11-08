@@ -11,9 +11,10 @@ import UIKit
 
 class NamedColor: Equatable
 {
-    var name : String
     var color : UIColor
     let uuid: String
+    
+    var entityRef: NamedColorEntity?
     
     init(name : String, color : UIColor)
     {
@@ -21,6 +22,21 @@ class NamedColor: Equatable
         
         self.name = name;
         self.color = color
+    }
+    
+    var name : String
+    {
+        didSet
+        {
+            if let _entityRef = entityRef
+            {
+                _entityRef.colorName = name
+                
+                let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+                
+                appDelegate.saveContext()
+            }
+        }
     }
 }
 

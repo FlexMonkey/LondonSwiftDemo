@@ -22,22 +22,28 @@ class NamedColorEntity: NSManagedObject
         let name = entity.colorName
         let color = UIColor.colorFromNSNumbers(redComponent: entity.redComponent, greenComponent: entity.greenComponent, blueComponent: entity.blueComponent)
   
-        return NamedColor(name: name, color: color)
+        var namedColor = NamedColor(name: name, color: color)
+        
+        namedColor.entityRef = entity
+        
+        return namedColor
     }
     
     class func createInManagedObjectContext(moc: NSManagedObjectContext, namedColor: NamedColor) -> NamedColorEntity
     {
-        let newItem = NSEntityDescription.insertNewObjectForEntityForName("NamedColorEntity", inManagedObjectContext: moc) as NamedColorEntity
+        let newEntity = NSEntityDescription.insertNewObjectForEntityForName("NamedColorEntity", inManagedObjectContext: moc) as NamedColorEntity
         
         let colorComponents = namedColor.color.getRGB()
         
-        newItem.redComponent = colorComponents.redComponent
-        newItem.greenComponent = colorComponents.greenComponent
-        newItem.blueComponent = colorComponents.blueComponent
+        newEntity.redComponent = colorComponents.redComponent
+        newEntity.greenComponent = colorComponents.greenComponent
+        newEntity.blueComponent = colorComponents.blueComponent
 
-        newItem.colorName = namedColor.name
+        newEntity.colorName = namedColor.name
         
-        return newItem
+        namedColor.entityRef = newEntity
+        
+        return newEntity
     }
 }
 
