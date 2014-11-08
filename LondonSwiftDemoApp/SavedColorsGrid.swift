@@ -41,13 +41,15 @@ class SavedColorsGrid: Panel, UICollectionViewDataSource, UICollectionViewDelega
     {
         didSet
         {
-            if oldValue.count < colors.count && oldValue.count != 0
+            if oldValue.count < colors.count
             {
                 for newColor in colors
                 {
-                    if oldValue.filter({($0 == newColor)}).count == 0
+                    if find(oldValue, newColor) == nil
                     {
-                        let insertIndexPath = NSIndexPath(forItem: 0, inSection: 0) // colors.count - 1
+                        let newIndex = find(colors, newColor)
+          
+                        let insertIndexPath = NSIndexPath(forItem: newIndex!, inSection: 0) 
                         
                         uiCollectionView.insertItemsAtIndexPaths([insertIndexPath])
                     }

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class NamedColor
+class NamedColor: Equatable
 {
     var name : String
     var color : UIColor
