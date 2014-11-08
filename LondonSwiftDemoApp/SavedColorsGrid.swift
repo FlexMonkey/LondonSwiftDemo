@@ -55,6 +55,20 @@ class SavedColorsGrid: Panel, UICollectionViewDataSource, UICollectionViewDelega
                     }
                 }
             }
+            else if oldValue.count > colors.count
+            {
+                for color in oldValue
+                {
+                    if find(colors, color) == nil
+                    {
+                        let deletedIndex = find(oldValue, color)
+                        
+                        let deleteIndexPath = NSIndexPath(forItem: deletedIndex!, inSection: 0)
+                        
+                        uiCollectionView.deleteItemsAtIndexPaths([deleteIndexPath])
+                    }
+                }
+            }
             else
             {
                 uiCollectionView.reloadData()
@@ -67,6 +81,26 @@ class SavedColorsGrid: Panel, UICollectionViewDataSource, UICollectionViewDelega
         return selectedColor!
     }
 
+    func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool
+    {
+        return true
+    }
+    
+    func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) -> Bool
+    {
+        return action.description == "cut:"
+    }
+    
+    func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!)
+    {
+        if action.description == "cut:"
+        {
+            colors = colors.filter({$0 != self.colors[indexPath.item]})
+            
+            sendActionsForControlEvents(UIControlEvents.ValueChanged)
+        }
+    }
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         return colors.count
@@ -103,3 +137,4 @@ class SavedColorsGrid: Panel, UICollectionViewDataSource, UICollectionViewDelega
     }
     
 }
+

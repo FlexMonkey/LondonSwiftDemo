@@ -82,7 +82,7 @@ class ViewController: UIViewController {
         
         rgbWidget.addTarget(self, action: "rgbWidgetChangeHandler", forControlEvents: UIControlEvents.ValueChanged)
         colorPicker.addTarget(self, action: "colorPickerChangeHandler", forControlEvents: UIControlEvents.ValueChanged)
-        savedColorsGrid.addTarget(self, action: "savedColorsGridSelectHandler", forControlEvents: UIControlEvents.ValueChanged)
+        savedColorsGrid.addTarget(self, action: "savedColorsGridChangeHandler", forControlEvents: UIControlEvents.ValueChanged)
  
         populateToolbar()
         
@@ -99,9 +99,31 @@ class ViewController: UIViewController {
         currentColor = rgbWidget.currentColor
     }
     
-    func savedColorsGridSelectHandler()
+    func savedColorsGridChangeHandler()
     {
-        currentColor = savedColorsGrid.getSelectedColor()
+        if savedColorsGrid.colors.count < savedColors.count
+        {
+            // a delete
+            
+            for color in savedColors
+            {
+                if find(savedColorsGrid.colors, color) == nil
+                {
+                    if let _entityRef = color.entityRef
+                    {
+                        managedObjectContext.deleteObject(_entityRef)
+                    }
+                }
+            }
+            
+            savedColors = savedColorsGrid.colors
+        }
+        else
+        {
+            // a select
+            
+            currentColor = savedColorsGrid.getSelectedColor()
+        }
     }
     
     func populateToolbar()
