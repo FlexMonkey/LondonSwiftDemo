@@ -82,7 +82,8 @@ class ViewController: UIViewController {
         
         rgbWidget.addTarget(self, action: "rgbWidgetChangeHandler", forControlEvents: UIControlEvents.ValueChanged)
         colorPicker.addTarget(self, action: "colorPickerChangeHandler", forControlEvents: UIControlEvents.ValueChanged)
-        savedColorsGrid.addTarget(self, action: "savedColorsGridChangeHandler", forControlEvents: UIControlEvents.ValueChanged)
+        savedColorsGrid.addTarget(self, action: "savedColorsGridSelectHandler", forControlEvents: UIControlEvents.SavedColorSelected)
+        savedColorsGrid.addTarget(self, action: "savedColorsGridDeleteHandler", forControlEvents: UIControlEvents.SavedColorDeleted)
  
         populateToolbar()
         
@@ -99,31 +100,27 @@ class ViewController: UIViewController {
         currentColor = rgbWidget.currentColor
     }
     
-    func savedColorsGridChangeHandler()
+    func savedColorsGridDeleteHandler()
     {
-        if savedColorsGrid.colors.count < savedColors.count
+        for color in savedColors
         {
-            // a delete
-            
-            for color in savedColors
+            if find(savedColorsGrid.colors, color) == nil
             {
-                if find(savedColorsGrid.colors, color) == nil
+                if let _entityRef = color.entityRef
                 {
-                    if let _entityRef = color.entityRef
-                    {
-                        managedObjectContext.deleteObject(_entityRef)
-                    }
+                    managedObjectContext.deleteObject(_entityRef)
                 }
             }
-            
-            savedColors = savedColorsGrid.colors
         }
-        else
-        {
-            // a select
-            
-            currentColor = savedColorsGrid.getSelectedColor()
-        }
+        
+        appDelegate.saveContext()
+        
+        savedColors = savedColorsGrid.colors
+    }
+    
+    func savedColorsGridSelectHandler()
+    {
+       currentColor = savedColorsGrid.getSelectedColor()
     }
     
     func populateToolbar()

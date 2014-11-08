@@ -97,7 +97,7 @@ class SavedColorsGrid: Panel, UICollectionViewDataSource, UICollectionViewDelega
         {
             colors = colors.filter({$0 != self.colors[indexPath.item]})
             
-            sendActionsForControlEvents(UIControlEvents.ValueChanged)
+            sendActionsForControlEvents(UIControlEvents.SavedColorDeleted)
         }
     }
     
@@ -110,7 +110,7 @@ class SavedColorsGrid: Panel, UICollectionViewDataSource, UICollectionViewDelega
     {
         selectedColor = colors[indexPath.item].color
         
-        sendActionsForControlEvents(UIControlEvents.ValueChanged)
+        sendActionsForControlEvents(UIControlEvents.SavedColorSelected)
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
@@ -137,4 +137,5 @@ class SavedColorsGrid: Panel, UICollectionViewDataSource, UICollectionViewDelega
     }
     
 }
+
 

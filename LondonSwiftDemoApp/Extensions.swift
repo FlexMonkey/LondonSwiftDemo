@@ -18,6 +18,12 @@ extension Float
     }
 }
 
+extension UIControlEvents
+{
+    static let SavedColorSelected: UIControlEvents = UIControlEvents(0x01000000)
+    static let SavedColorDeleted: UIControlEvents = UIControlEvents(0x02000000)
+}
+
 extension UIColor
 {
     class func colorFromFloats(#redComponent: Float, greenComponent: Float, blueComponent: Float) -> UIColor
