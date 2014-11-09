@@ -9,6 +9,13 @@
 import Foundation
 import UIKit
 
+extension CGRect
+{
+    func isLandscape() -> Bool
+    {
+        return self.width > self.height
+    }
+}
 
 extension Float
 {

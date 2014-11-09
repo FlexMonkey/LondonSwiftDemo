@@ -204,10 +204,9 @@ class ViewController: UIViewController {
         let contentHeight = view.frame.height - toolbarHeight
         let margin = CGFloat(10)
         
-        if view.frame.width > view.frame.height
+    
+        if view.frame.isLandscape()
         {
-            // landscape
-            
             let leftColumnWidth = view.frame.width * 0.34
             let rightColumnWidth = view.frame.width * 0.66
             
@@ -225,8 +224,6 @@ class ViewController: UIViewController {
         }
         else
         {
-            // portrait
-            
             let rowHeight = (contentHeight - topLayoutGuide.length) / 4
             let contentWidth = view.frame.width
             
