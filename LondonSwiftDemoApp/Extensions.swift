@@ -80,6 +80,21 @@ extension UIColor
     
 }
 
+func findColorInNamedColors(namedColorsArray: [NamedColor], color: UIColor) -> Int?
+{
+    var index: Int?
+    
+    for (i: Int, candidateNamedColor: NamedColor) in enumerate(namedColorsArray)
+    {
+        if candidateNamedColor.color == color
+        {
+            index = i
+        }
+    }
+    
+    return index
+}
+
 func == (lhs: UIColor, rhs: UIColor) -> Bool
 {
     return CGColorEqualToColor(lhs.CGColor, rhs.CGColor)

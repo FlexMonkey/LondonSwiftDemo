@@ -50,14 +50,11 @@ class ColorPicker: Panel, UIPickerViewDataSource, UIPickerViewDelegate
             sendActionsForControlEvents(.ValueChanged)
             
             var matchFound = false
-            
-            for (index, namedColor) in enumerate(colors)
+  
+            if let _colorIndex =  findColorInNamedColors(colors, currentColor)
             {
-                if namedColor.color == currentColor
-                {
-                    spinner.selectRow(index, inComponent: 0, animated: true)
-                    matchFound = true
-                }
+                spinner.selectRow(_colorIndex, inComponent: 0, animated: true)
+                matchFound = true
             }
             
             if !matchFound
